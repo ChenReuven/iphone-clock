@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Clock: React.FC = () => {
   const [time, setTime] = useState(new Date());
@@ -22,7 +22,7 @@ const Clock: React.FC = () => {
   const hourDegrees = ((hours + minutes / 60) / 12) * 360;
 
   return (
-    <div className="w-64 h-64 bg-white rounded-full shadow-lg relative">
+    <div data-testid="clock" className="w-64 h-64 bg-white rounded-full shadow-lg relative">
       <div className="w-full h-full rounded-full bg-white relative">
         {[...Array(12)].map((_, i) => (
           <div
@@ -57,6 +57,9 @@ const Clock: React.FC = () => {
           style={{ transform: `translateX(-50%) rotate(${secondDegrees}deg)` }}
         />
         <div className="absolute w-3 h-3 bg-red-500 rounded-full left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+      </div>
+      <div data-testid="time-display" className="absolute w-full text-center bottom-16">
+        {time.toLocaleTimeString()}
       </div>
     </div>
   );
